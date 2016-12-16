@@ -1,0 +1,63 @@
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@mixin radius($size) {
+  -webkit-border-radius: $size;
+  border-radius: $size;
+}
+
+@mixin size($height,$width) {
+  height: $height;
+  width: $width;
+}
+
+@mixin box-sizing( $box : border-box) {
+  -webkit-box-sizing: $box;
+  -moz-box-sizing: $box;
+  box-sizing: $box;
+}
+
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin skew($value) {
+  -webkit-transform: skew($value);
+  -moz-transform: skew($value);
+  -ms-transform: skew($value);
+  -o-transform: skew($value);
+  transform: skew($value);
+}
+
+
+@mixin breakpoint($media) {
+  @if $media == md {
+    @media only screen and (max-width: $screen-md) { @content; }
+  }
+  @else if $media == sm {
+    @media only screen and (max-width: $screen-sm - 1) { @content; }
+  }
+  @else if $media == xs {
+    @media only screen and (max-width: $screen-xs) { @content; }
+  }
+}
