@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title Page</title>
+
+        <!--build:css css/styles.min.css-->
+        <link rel="stylesheet" href="css/main.css">
+        <!--endbuild-->
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <main class="container">
+                       
+            <!-- form elements -->
+            <section id="form-element">        
+                <!-- checkbox -->
+                <label class="control control--checkbox">Checkbox
+                    <input type="checkbox" />
+                    <div class="control__indicator"></div>
+                </label>
+                <label class="control control--checkbox">Checked checkbox
+                    <input type="checkbox" checked="checked" />
+                    <div class="control__indicator"></div>
+                </label>
+                <label class="control control--checkbox">Disabled checkbox
+                    <input type="checkbox" disabled="disabled" />
+                    <div class="control__indicator"></div>
+                </label>
+                <label class="control control--checkbox">Disabled checkbox
+                    <input type="checkbox" checked="checked" disabled="disabled" />
+                    <div class="control__indicator"></div>
+                </label>
+
+                <!-- Radio button -->
+                <label class="control control--radio">First radio
+                    <input type="radio" name="radio" checked="checked" />
+                    <div class="control__indicator"></div>
+                </label>
+                <label class="control control--radio">Second radio
+                    <input type="radio" name="radio" />
+                    <div class="control__indicator"></div>
+                </label>
+                <label class="control control--radio">Disabled
+                    <input type="radio" name="radio2" disabled="disabled" checked="checked"/>
+                    <div class="control__indicator"></div>
+                </label>
+                <label class="control control--radio">Disabled
+                    <input type="radio" name="radio2" disabled="disabled" />
+                    <div class="control__indicator"></div>
+                </label>
+                <!-- custom select -->
+                <div class="select">
+                  <select>
+                    <option>First select</option>
+                    <option>Option</option>
+                    <option>Option</option>
+                  </select>
+                  <div class="select__arrow"></div>
+                </div>
+                <div class="select">
+                  <select>
+                    <option>Second select</option>
+                    <option>Option</option>
+                    <option>Option</option>
+                  </select>
+                  <div class="select__arrow"></div>
+                </div>
+                <div class="select">
+                  <select disabled="disabled">
+                    <option>Disabled</option>
+                    <option>Option</option>
+                    <option>Option</option>
+                  </select>
+                  <div class="select__arrow"></div>
+                </div>
+            </section>
+
+        </main>
+        
+
+        <!--build:js js/main.min.js -->
+        <script src="vendors/jquery/dist/jquery.js"></script>
+        <script src="vendors/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+        <script src="js/main.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>

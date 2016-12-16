@@ -1,0 +1,204 @@
+$gray:gray;
+$white-base:white;
+$form-border-color :lighten($gray-base, 60%);
+$form-text-color: $gray;
+$form-background-color:$white-base;
+$form-effect-color:darken($white-base, 5%);
+$form-disabled-color:lighten($gray-base, 40%);
+
+.textfield {
+    margin: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    line-height: $line-height-computed * .9;
+    padding: 10px 5px;
+    font-size: $font-size-base;
+    background: $form-background-color;
+    border: 1px solid $form-border-color;
+    color: $form-text-color;
+    @include radius(0);
+    box-shadow: 0 0 0 0 transparent inset;
+    -webkit-transition: color .1s ease, border-color .1s ease;
+    transition: color .1s ease, border-color .1s ease;
+    @include box-sizing(border-box);
+    width: auto;
+}
+
+.textfield--full {
+    width: 100%;
+    vertical-align: top;
+}
+
+.textfield-with-icon {
+    font-size: $font-size-base;
+    position: relative;
+    .textfield {
+        padding-right: 35px;
+        width: 100%;
+    }
+    span {
+        font-size: $font-size-h4;
+        position: absolute;
+        right: 7px;
+        top: 11px;
+        color: $form-text-color;
+    }
+    button {
+        @extend .btn;
+        font-size: $font-size-h4;
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        bottom: 1px;
+        padding: 0px;
+        width: 35px;
+        border: none;
+        border-left: 1px solid lighten($gray-base, 80%);
+        background: $form-background-color;
+        color: $form-text-color;
+        span {
+            font-size: $font-size-h4;
+            position: absolute;
+            right: 7px;
+            top: 11px;
+        }
+    }
+}
+
+.control__indicator {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: $form-background-color;
+    border: 1px solid $form-border-color;
+}
+.control__indicator:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.control {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        &:checked ~ .control__indicator {
+            background: $form-background-color;
+        }
+        &:checked ~ .control__indicator:after {
+		    display: block;
+		}
+		&:focus ~ .control__indicator {
+            background: $form-background-color;
+        }
+        &:checked:focus ~ .control__indicator {
+            background: $form-background-color;
+        }
+        &:disabled ~ .control__indicator {
+            background: $form-effect-color;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    }
+    &:hover input ~ .control__indicator {
+        background: $form-effect-color;
+    }
+    &:hover input:not([disabled]):checked ~ .control__indicator {
+        background: $form-effect-color;
+    }
+}
+
+.control--checkbox {
+    .control__indicator:after {
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 10px;
+        border: solid $form-text-color;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+    input:disabled ~ .control__indicator:after {
+        border-color: $form-disabled-color;
+    }
+}
+
+.control--radio {
+	.control__indicator {
+	    border-radius: 50%;
+	}
+    .control__indicator:after {
+        left: 2px;
+        top: 2px;
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+        background: $gray-base;
+    }
+    input:disabled ~ .control__indicator:after {
+        background: $form-disabled-color;
+    }
+}
+
+.select {
+    font-size: $font-size-base;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 100%;
+    select {
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        padding: 10px 15px;
+        outline: 0;
+        border: 1px solid $form-border-color;
+        border-radius: 0;
+        background: $form-background-color;
+        color: $form-text-color;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        &::-ms-expand {
+            display: none;
+        }
+        &:hover,
+        &:focus {
+            color: $form-text-color;
+            background: $form-background-color;
+        }
+        &:hover ~ .select__arrow, 
+        &:focus ~ .select__arrow {
+	        border-top-color: $gray-base;
+	    }   
+        &:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        &:disabled ~ .select__arrow {
+	        border-top-color: $form-disabled-color;
+	        opacity: 0.5; 
+	    }
+    }
+}
+.select__arrow {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    width: 11px;
+    height: 12px;
+    border: solid $form-text-color;
+    border-width: 0px 3px 3px 0px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
