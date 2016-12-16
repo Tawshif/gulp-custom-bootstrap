@@ -5871,6 +5871,9 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+header {
+  color: #000; }
+
 .textfield {
   margin: 0;
   outline: 0;
