@@ -1,64 +1,90 @@
-// var thePets = [
-// 	{
-// 		"name":"orio",
-// 		"species":"cat",
-// 		"favFood":"tuna"
-// 	},	
-// 	{
-// 		"name":"Meao",
-// 		"species":"cat",
-// 		"favFood":"tuna"
-// 	}
-// ]
-
-// for (var i = 0; i < thePets.length; i++) {
-// 	document.write(thePets[i].name,"</br>");
-// 	document.write(thePets[i].species,"</br>");
-// 	document.write(thePets[i].favFood,"</br>");
-// }
-
-var pageCounter = 1;
-var btn = document.getElementById('btn');
-var animalContainer = document.getElementById('animal');
-
-btn.addEventListener("click", function(){
-	var ourRequest = new XMLHttpRequest();
-	ourRequest.open('GET', 'https://learnwebcode.github.io/json-example/animals-'+ pageCounter +'.json');
-	ourRequest.onload = function(){
-		var ourData = JSON.parse(ourRequest.responseText);
-		renderHtml(ourData);
-	};
-	ourRequest.send();
-	pageCounter ++;
-
-	if (pageCounter > 3) {
-		btn.classList.add("hidden");
-	}
+jQuery(document).ready(function() {
+    $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
+    }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
+    });
+    //Check to see if the window is top if not then display button
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 300) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+    //Click event to scroll to top
+    $('.scrollToTop').click(function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
 });
 
-function renderHtml(data){
-	var htmlString = "";
-	for (var i = 0; i < data.length; i++) {
-		htmlString += "<li class='mdl-list__item'>"+ data[i].name+ " is a " + data[i].species +" that likes the ";
-		for (var ii = 0; ii < data[i].foods.likes.length; ii++) {
-			if (ii === 0) {
-				htmlString += data[i].foods.likes[ii];
-			} else {
-				htmlString += " and "+ data[i].foods.likes[ii];
-			}
-		}
-		htmlString += " and dislikes ";
-		for (var iii = 0; ii < data[i].foods.dislikes.length; iii++) {
+wow = new WOW({
+    animateClass: 'animated',
+    offset: 100
+});
+wow.init();
 
-			if (iii === 0) {
-				htmlString += data[i].foods.dislikes[iii];
-			} else {
-				htmlString += " and "+ data[i].foods.dislikes[iii];
-			}
-		}
-		htmlString += " .</li>";
-	}
-	animalContainer.insertAdjacentHTML("afterbegin", htmlString);
+/* loader */
+    
+(function(){
+    // makes sure the whole site is loaded
+    $('#status').fadeOut(); 
+    // will first fade out the loading animation
+    $('#preloader').delay(700).fadeOut('slow'); 
+    // will fade out the white DIV that covers the website.
+    $('body').delay(700).css({
+        'overflow': 'visible'
+    });
+})();
 
-}
+/* main function part start */
+
+window.onload = function(){
+    // var http = new XMLHttpRequest();
+    
+    // function callback(val){
+    //     console.log(val);
+    // }
+
+    // http.onreadystatechange = function(){
+    //     if (http.readyState == 4 && http.status == 200) {
+    //         var data = JSON.parse(http.response);
+    //         data.forEach(callback);
+    //     }
+    // }
+
+    // http.open('GET', 'http://localhost:3000/data', true);
+    // http.send();
+    
+    var method = 'GET';
+    var URL ='http://localhost:3000/data';
+
+    var list = document.getElementById('data');
+
+    var ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            var response = ajax.responseText;
+                response = JSON.parse(response);
+                html = '<ul class="list-unstyled">';
+                for (var i = 0; i < response.length; i++) {
+                    html += '<li>'+ response[i] +'</li>';
+                }
+                html += '</ul>';
+
+                list.appendChild(html);
+                console.log(html);
+        }
+        
+    };
+    ajax.open(method, URL, true);
+    ajax.setRequestHeader("Content-type", "application/json");
+    ajax.send();
+
+
+};
+
 

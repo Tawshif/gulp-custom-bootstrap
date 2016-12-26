@@ -12,3 +12,10 @@ node.js
 02. bower install
 03. gulp
 
+### Api  info
+
+https://newsapi.org/
+
+anikphp@gmail.com
+
+f769e424887347c28caed2db59868ef3
